@@ -58,6 +58,8 @@ function findById(id, animalsArray) {
 }
 
 
+
+
 app.get('/api/animals', (req, res) => {
     let results = animals;
     if (req.query) {
@@ -74,6 +76,15 @@ app.get('/api/animals/:id', (req, res) => {
         res.send(404);
     }
 });
+
+app.post('/api/animals', (req, res) => {
+    // req.body is where our incoming content will be
+    console.log(req.body);
+    res.json(req.body);
+});
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
